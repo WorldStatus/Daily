@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redirecting...</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f4f4f7;
+            color: #333;
+            text-align: center;
+        }
+        .loader {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #3498db;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin-bottom: 20px;
+        }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        .btn {
+            margin-top: 20px;
+            padding: 12px 24px;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="loader"></div>
+    <p>Opening in your default browser...</p>
+    <p style="font-size: 0.9em; color: #666;">If the page does not open, please tap the button below.</p>
+    
+    <a id="manual-link" href="https://www.effectivegatecpm.com/qttc6zs6t?key=bc9763367c72e94c313d54be7288fd5d" class="btn">Open Browser</a>
+
+    <script>
+        (function() {
+            const destination = "https://www.effectivegatecpm.com/qttc6zs6t?key=bc9763367c72e94c313d54be7288fd5d";
+            const cleanUrl = "www.effectivegatecpm.com/qttc6zs6t?key=bc9763367c72e94c313d54be7288fd5d";
+            const ua = navigator.userAgent || navigator.vendor || window.opera;
+
+            const isInstagram = ua.indexOf('Instagram') > -1;
+            const isFacebook = (ua.indexOf('FBAN') > -1) || (ua.indexOf('FBAV') > -1);
+            const isIOS = /iPad|iPhone|iPod/.test(ua) && !window.MSStream;
+            const isAndroid = /Android/.test(ua);
+
+            if (isInstagram || isFacebook) {
+                if (isAndroid) {
+                    // Android: Use Intent to force Chrome/Default browser
+                    window.location.href = "intent://" + cleanUrl + "#Intent;scheme=https;end;";
+                } else if (isIOS) {
+                    // iOS: Use a common trick to trigger system browser via a blob or direct redirect
+                    // Note: iOS Instagram often blocks auto-Safari-launching. 
+                    // This attempt will refresh the location or prompt the user.
+                    window.location.href = destination;
+                    
+                    // Fallback for iOS: If still in In-App browser, 
+                    // some users use a "Download trick" here, but simple redirect is safest for CPM.
+                } else {
+                    window.location.href = destination;
+                }
+            } else {
+                // Not in a social media app-browser
+                window.location.href = destination;
+            }
+        })();
+    </script>
+</body>
+</html>
